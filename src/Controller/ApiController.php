@@ -86,10 +86,9 @@ class ApiController extends AppController {
         $word_list = $wordsTable->find('all');
         $replaceArray = array();
         foreach ($word_list as $row) {
-            $wordPairs = array($row['search_word'] => $row['replace_word']);
-            $replaceArray[] = $wordPairs;
+            $replaceArray[$row['search_word']] = $row['replace_word'];
         }
-        $field = str_replace(array_keys($replaceArray), array_values($replaceArray), $content); // Tämä ei toimi :(
+        $field = str_replace(array_keys($replaceArray), array_values($replaceArray), $content);
         return $field;
     }
 }
